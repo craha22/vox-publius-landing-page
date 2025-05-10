@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vox Publius - Political Intelligence for American Restoration</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --red: #D12026;
+            --navy: #101C3D;
+            --dark-gray: #1A1A1A;
+            --medium-gray: #333333;
+            --light-gray: #F2F2F2;
+            --space-unit: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--black);
+            line-height: 1.5;
+            background-color: var(--white);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 calc(var(--space-unit) * 4);
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.1;
+        }
+        
+        h1 {
+            font-size: calc(var(--space-unit) * 7);
+            margin-bottom: calc(var(--space-unit) * 3);
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: calc(var(--space-unit) * 5);
+            margin-bottom: calc(var(--space-unit) * 3);
+            letter-spacing: -0.01em;
+        }
+        
+        h3 {
+            font-size: calc(var(--space-unit) * 3);
+            margin-bottom: calc(var(--space-unit) * 2);
+        }
+        
+        p {
+            margin-bottom: calc(var(--space-unit) * 2);
+        }
+        
+        .subtitle {
+            font-size: calc(var(--space-unit) * 2.5);
+            font-weight: 400;
+            margin-bottom: calc(var(--space-unit) * 4);
+        }
+        
+        .highlight {
+            color: var(--red);
+        }
+        
+        .mono {
+            font-family: 'SF Mono', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        /* Header & Navigation */
+        header {
+            padding: calc(var(--space-unit) * 3) 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: calc(var(--space-unit) * 2.5);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: calc(var(--space-unit) * 4);
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: calc(var(--space-unit) * 1.5);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--black);
+            color: var(--white);
+            padding: calc(var(--space-unit) * 1.5) calc(var(--space-unit) * 3);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin-left: calc(var(--space-unit) * 4);
+            text-transform: uppercase;
+            font-size: calc(var(--space-unit) * 1.5);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: calc(var(--space-unit) * 80);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/api/placeholder/1440/720');
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%) brightness(0.7);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: calc(var(--space-unit) * 6);
+            border-left: 4px solid var(--red);
+        }
+        
+        .action-buttons {
+            display: flex;
+            margin-top: calc(var(--space-unit) * 4);
+        }
+        
+        .primary-button {
+            display: inline-block;
+            background-color: var(--black);
+            color: var(--white);
+            padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 4);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-right: calc(var(--space-unit) * 2);
+        }
+        
+        .secondary-button {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--black);
+            padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 4);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid var(--black);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            padding: calc(var(--space-unit) * 10) 0;
+            background-color: var(--black);
+            color: var(--white);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: calc(var(--space-unit) * 3);
+        }
+        
+        .stat-card {
+            padding: calc(var(--space-unit) * 4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-value {
+            font-size: calc(var(--space-unit) * 6);
+            font-weight: 700;
+            margin-bottom: calc(var(--space-unit) * 1);
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: calc(var(--space-unit) * 1.75);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.8;
+        }
+        
+        /* Platform Section */
+        .platform-section {
+            padding: calc(var(--space-unit) * 12) 0;
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: calc(var(--space-unit) * 8);
+            align-items: center;
+        }
+        
+        .platform-content {
+            max-width: 90%;
+        }
+        
+        .platform-image {
+            height: calc(var(--space-unit) * 50);
+            background-image: url('/api/placeholder/600/500');
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%);
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: calc(var(--space-unit) * 12) 0;
+            background-color: var(--light-gray);
+        }
+        
+        .section-header {
+            margin-bottom: calc(var(--space-unit) * 8);
+            max-width: 800px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: calc(var(--space-unit) * 3);
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            padding: calc(var(--space-unit) * 4);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .feature-icon {
+            width: calc(var(--space-unit) * 6);
+            height: calc(var(--space-unit) * 6);
+            background-color: var(--light-gray);
+            margin-bottom: calc(var(--space-unit) * 3);
+        }
+        
+        .feature-title {
+            font-size: calc(var(--space-unit) * 2.5);
+            margin-bottom: calc(var(--space-unit) * 2);
+            font-weight: 600;
+        }
+        
+        .feature-description {
+            font-size: calc(var(--space-unit) * 1.75);
+            color: var(--medium-gray);
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: calc(var(--space-unit) * 12) 0;
+            background-color: var(--white);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: calc(var(--space-unit) * 4);
+        }
+        
+        .testimonial-card {
+            border: 1px solid var(--light-gray);
+            padding: calc(var(--space-unit) * 5);
+        }
+        
+        .testimonial-quote {
+            font-size: calc(var(--space-unit) * 2.5);
+            line-height: 1.4;
+            margin-bottom: calc(var(--space-unit) * 3);
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            font-size: calc(var(--space-unit) * 2);
+        }
+        
+        .testimonial-role {
+            color: var(--medium-gray);
+            font-size: calc(var(--space-unit) * 1.75);
+        }
+        
+        /* Call to Action Section */
+        .cta-section {
+            padding: calc(var(--space-unit) * 12) 0;
+            background-color: var(--navy);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-buttons {
+            margin-top: calc(var(--space-unit) * 6);
+        }
+        
+        .white-button {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--navy);
+            padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 4);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        
+        /* Footer */
+        footer {
+            padding: calc(var(--space-unit) * 8) 0 calc(var(--space-unit) * 4);
+            background-color: var(--black);
+            color: var(--white);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: calc(var(--space-unit) * 6);
+            margin-bottom: calc(var(--space-unit) * 8);
+        }
+        
+        .footer-logo {
+            font-size: calc(var(--space-unit) * 2.5);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: calc(var(--space-unit) * 3);
+        }
+        
+        .footer-description {
+            opacity: 0.7;
+            max-width: 80%;
+        }
+        
+        .footer-heading {
+            font-size: calc(var(--space-unit) * 2);
+            margin-bottom: calc(var(--space-unit) * 3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: calc(var(--space-unit) * 2);
+        }
+        
+        .footer-links li a {
+            color: var(--white);
+            opacity: 0.7;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+        
+        .footer-links li a:hover {
+            opacity: 1;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: calc(var(--space-unit) * 4);
+            text-align: center;
+            opacity: 0.5;
+            font-size: calc(var(--space-unit) * 1.5);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">VOX PUBLIUS<span class="highlight">.</span></div>
+            <div class="nav-container">
+                <nav>
+                    <ul>
+                        <li><a href="#">Platform</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Use Cases</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </nav>
+                <a href="#" class="cta-button">Login</a>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-background">
+            <!-- <img src="images/service-pnp-fsa-8a33000-8a33000-8a33044v.jpg" alt="Hero background image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;"> -->
+            <img src="images/post-office_td1991-175.jpg" alt="Hero background image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Political Intelligence for American Restoration</h1>
+                <p class="subtitle">Actionable insights for the architects of America's future.</p>
+                <div class="action-buttons">
+                    <a href="#" class="primary-button">Request Access</a>
+                    <a href="#" class="secondary-button">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">96<span class="highlight">%</span></div>
+                    <div class="stat-label">Prediction Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4.8<span class="highlight">M</span></div>
+                    <div class="stat-label">Daily Data Points</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">72<span class="highlight">h</span></div>
+                    <div class="stat-label">Advance Warning</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">100<span class="highlight">%</span></div>
+                    <div class="stat-label">American Built</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="platform-section">
+        <div class="container">
+            <div class="platform-grid">
+                <div class="platform-content">
+                    <h2>Command Center for <span class="highlight">Political Actors</span></h2>
+                    <p>Vox Publius provides a comprehensive intelligence platform designed for leaders who understand that information advantage is the foundation of effective governance.</p>
+                    <p>Our system converts vast quantities of political data into actionable insights, enabling strategic decision-making with unprecedented clarity and foresight.</p>
+                    <div class="action-buttons">
+                        <a href="#" class="primary-button">See The Platform</a>
+                    </div>
+                </div>
+                <div class="platform-image"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Superior <span class="highlight">Intelligence</span> Capabilities</h2>
+                <p>Our platform delivers comprehensive visibility into the political landscape, providing you with the intelligence advantage necessary for success.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3 class="feature-title">Sentiment Analysis</h3>
+                    <p class="feature-description">Real-time constituent sentiment tracking across voting districts with precision demographic targeting.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3 class="feature-title">Policy Impact Forecasting</h3>
+                    <p class="feature-description">Proprietary algorithms predict electoral and economic outcomes of policy proposals before implementation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3 class="feature-title">Opposition Intelligence</h3>
+                    <p class="feature-description">Comprehensive assessment of opponent vulnerabilities, funding sources, and narrative weaknesses.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3 class="feature-title">Media Narrative Tracking</h3>
+                    <p class="feature-description">Monitor narrative evolution across traditional and social media with early warning indicators.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3 class="feature-title">Fundraising Analytics</h3>
+                    <p class="feature-description">Identify high-potential donors, optimize messaging, and increase conversion rates through data-driven targeting.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"></div>
+                    <h3 class="feature-title">Legislative Opportunity Mapping</h3>
+                    <p class="feature-description">Discover strategic openings for legislative action through comprehensive political landscape analysis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Trusted by <span class="highlight">Leaders</span></h2>
+                <p>Join the vanguard of America's political renewal.</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"Vox Publius provides the intelligence advantage necessary for navigating today's complex political environment. It's become an indispensable part of our strategic operations."</p>
+                    <div class="testimonial-author">James Mitchell</div>
+                    <div class="testimonial-role">Former Chief of Staff, U.S. Senate</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"The predictive capabilities of this platform are unlike anything I've seen. We identified critical constituent concerns months before our opponents even recognized the issue."</p>
+                    <div class="testimonial-author">Alexandra Reynolds</div>
+                    <div class="testimonial-role">Campaign Director</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Join the Architects of America's Future</h2>
+                <p class="subtitle">Gain the intelligence advantage necessary for effective political leadership in today's complex environment.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="white-button">Request Platform Access</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">VOX PUBLIUS<span class="highlight">.</span></div>
+                    <p class="footer-description">Political intelligence for the architects of America's future.</p>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Integration</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">White Papers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Vox Publius. All rights reserved. Proudly built in the United States of America.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
