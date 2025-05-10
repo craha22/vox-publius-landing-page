@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
     <title>Vox Publius - Political Intelligence for American Restoration</title>
     <style>
         /* Base Styles */
@@ -136,6 +137,7 @@
             margin-left: calc(var(--space-unit) * 4);
             text-transform: uppercase;
             font-size: calc(var(--space-unit) * 1.5);
+            cursor: pointer;
         }
         
         /* Hero Section */
@@ -184,6 +186,7 @@
             letter-spacing: 0.05em;
             text-transform: uppercase;
             margin-right: calc(var(--space-unit) * 2);
+            cursor: pointer;
         }
         
         .secondary-button {
@@ -196,6 +199,83 @@
             letter-spacing: 0.05em;
             text-transform: uppercase;
             border: 1px solid var(--black);
+            cursor: pointer;
+        }
+        
+        /* Waitlist Form Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            margin: 10% auto;
+            padding: calc(var(--space-unit) * 5);
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .close-button {
+            position: absolute;
+            top: calc(var(--space-unit) * 2);
+            right: calc(var(--space-unit) * 2);
+            font-size: calc(var(--space-unit) * 3);
+            cursor: pointer;
+            color: var(--medium-gray);
+        }
+        
+        .waitlist-form {
+            margin-top: calc(var(--space-unit) * 4);
+        }
+        
+        .form-field {
+            margin-bottom: calc(var(--space-unit) * 3);
+        }
+        
+        .form-field label {
+            display: block;
+            margin-bottom: calc(var(--space-unit) * 1);
+            font-weight: 600;
+            font-size: calc(var(--space-unit) * 2);
+        }
+        
+        .form-field input {
+            width: 100%;
+            padding: calc(var(--space-unit) * 1.5);
+            border: 1px solid var(--light-gray);
+            font-size: calc(var(--space-unit) * 2);
+            font-family: inherit;
+        }
+        
+        .form-submit {
+            background-color: var(--black);
+            color: var(--white);
+            border: none;
+            padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 4);
+            font-size: calc(var(--space-unit) * 2);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            width: 100%;
+            margin-top: calc(var(--space-unit) * 2);
+        }
+        
+        .success-message {
+            display: none;
+            background-color: #f0f9f0;
+            border-left: 4px solid #2ecc71;
+            padding: calc(var(--space-unit) * 3);
+            margin-top: calc(var(--space-unit) * 3);
         }
         
         /* Stats Section */
@@ -232,7 +312,7 @@
         
         /* Platform Section */
         .platform-section {
-            padding: calc(var(--space-unit) * 12) 0;
+            padding: calc(var(--space-unit) * 8) 0;
         }
         
         .platform-grid {
@@ -267,8 +347,8 @@
         
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: calc(var(--space-unit) * 3);
+            grid-template-columns: repeat(2, 1fr);
+            gap: calc(var(--space-unit) * 2);
         }
         
         .feature-card {
@@ -355,6 +435,7 @@
             font-weight: 500;
             letter-spacing: 0.05em;
             text-transform: uppercase;
+            cursor: pointer;
         }
         
         /* Footer */
@@ -417,6 +498,213 @@
             opacity: 0.5;
             font-size: calc(var(--space-unit) * 1.5);
         }
+        .principles-section {
+    padding: calc(var(--space-unit) * 10) 0;
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.principles-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.principles-quote {
+    margin: calc(var(--space-unit) * 6) 0;
+    font-size: calc(var(--space-unit) * 2.5);
+    line-height: 1.5;
+    border-left: 4px solid var(--red);
+    padding-left: calc(var(--space-unit) * 4);
+}
+
+.principles-quote cite {
+    display: block;
+    margin-top: calc(var(--space-unit) * 2);
+    font-size: calc(var(--space-unit) * 1.75);
+    font-style: normal;
+    opacity: 0.7;
+}
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    /* Typography adjustments */
+    h1 {
+        font-size: calc(var(--space-unit) * 4.5);
+        letter-spacing: -0.01em;
+    }
+    
+    h2 {
+        font-size: calc(var(--space-unit) * 3.5);
+    }
+    
+    .subtitle {
+        font-size: calc(var(--space-unit) * 2);
+    }
+    
+    /* Header & Navigation */
+    .header-container {
+        padding: calc(var(--space-unit) * 2) 0;
+    }
+    
+    /* Hero Section */
+    .hero {
+        height: calc(var(--space-unit) * 100);
+    }
+    
+    .hero-background {
+        /* Keep the background properties intact */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    
+    .hero-background img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        filter: grayscale(100%) brightness(0.7);
+    }
+    
+    .hero-content {
+        max-width: 100%;
+        margin: 0 calc(var(--space-unit) * 2);
+        padding: calc(var(--space-unit) * 4);
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .primary-button, .secondary-button {
+        width: 100%;
+        text-align: center;
+        margin-right: 0;
+        margin-bottom: calc(var(--space-unit) * 2);
+    }
+    
+    /* Principles Section */
+    .principles-quote {
+        font-size: calc(var(--space-unit) * 2);
+        padding-left: calc(var(--space-unit) * 2);
+    }
+    
+    /* Platform Section */
+    .platform-grid {
+        grid-template-columns: 1fr;
+        gap: calc(var(--space-unit) * 4);
+    }
+    
+    .platform-content {
+        max-width: 100%;
+        order: 2;
+    }
+    
+    .platform-image {
+        order: 1;
+        height: calc(var(--space-unit) * 40);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .platform-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        filter: grayscale(100%);
+    }
+    
+    /* Features Section */
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .feature-card {
+        margin-bottom: calc(var(--space-unit) * 3);
+    }
+    
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: calc(var(--space-unit) * 6);
+    }
+    
+    /* Modal adjustments */
+    .modal-content {
+        width: 90%;
+        margin: 15% auto;
+        padding: calc(var(--space-unit) * 4);
+    }
+    .header-container {
+        padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
+    }
+    
+    .logo {
+        font-size: calc(var(--space-unit) * 2.2); /* Slightly reduce logo size if needed */
+    }
+    
+    .cta-button {
+        font-size: calc(var(--space-unit) * 1.3);
+        padding: calc(var(--space-unit) * 1.2) calc(var(--space-unit) * 2);
+        margin-left: calc(var(--space-unit) * 2);
+    }
+}
+
+/* Small phone optimization */
+@media screen and (max-width: 375px) {
+    h1 {
+        font-size: calc(var(--space-unit) * 3.5);
+    }
+    
+    h2 {
+        font-size: calc(var(--space-unit) * 3);
+    }
+    
+    .container {
+        padding: 0 calc(var(--space-unit) * 2);
+    }
+    
+    .hero-content {
+        padding: calc(var(--space-unit) * 3);
+    }
+    .header-container {
+        padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 2);
+    }
+    
+    .logo {
+        font-size: calc(var(--space-unit) * 2); /* Further reduce on very small screens */
+    }
+    
+    .cta-button {
+        font-size: calc(var(--space-unit) * 1.2);
+        padding: calc(var(--space-unit) * 1) calc(var(--space-unit) * 1.5);
+        margin-left: calc(var(--space-unit) * 1);
+    }
+}
+
+/* Touch optimization for buttons */
+@media (hover: none) {
+    .primary-button, .secondary-button, .cta-button, .white-button, .form-submit {
+        padding-top: calc(var(--space-unit) * 2.5);
+        padding-bottom: calc(var(--space-unit) * 2.5);
+    }
+    
+    input, select, textarea {
+        font-size: 16px !important; /* Prevents iOS zoom on focus */
+    }
+}
+
+/* Fix for iOS sticky hover state */
+@media (hover: hover) {
+    .primary-button:hover, .secondary-button:hover, .cta-button:hover, .white-button:hover {
+        opacity: 0.9;
+        transition: opacity 0.2s ease;
+    }
+}
     </style>
 </head>
 <body>
@@ -424,16 +712,7 @@
         <div class="container header-container">
             <div class="logo">VOX PUBLIUS<span class="highlight">.</span></div>
             <div class="nav-container">
-                <nav>
-                    <ul>
-                        <li><a href="#">Platform</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Use Cases</a></li>
-                        <li><a href="#">Resources</a></li>
-                        <li><a href="#">About</a></li>
-                    </ul>
-                </nav>
-                <a href="#" class="cta-button">Login</a>
+                <a href="#" class="cta-button" id="headerWaitlistBtn">Join the Waitlist</a>
             </div>
         </div>
     </header>
@@ -448,123 +727,98 @@
                 <h1>Political Intelligence for American Restoration</h1>
                 <p class="subtitle">Actionable insights for the architects of America's future.</p>
                 <div class="action-buttons">
-                    <a href="#" class="primary-button">Request Access</a>
-                    <a href="#" class="secondary-button">Learn More</a>
+                    <a href="#" class="primary-button" id="heroWaitlistBtn">Join the Waitlist</a>
+                    <a href="mailto:info@voxpublius.com" class="secondary-button">Contact Us</a>
                 </div>
             </div>
         </div>
     </section>
     
-    <section class="stats-section">
+    <!-- Waitlist Modal -->
+    <div id="waitlistModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeModal">&times;</span>
+            <h2>Join the Waitlist</h2>
+            <p>Be among the first to experience Vox Publius's political intelligence platform.</p>
+            
+            <div class="waitlist-form">
+                <form id="waitlistForm">
+                    <div class="form-field">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="organization">Organization</label>
+                        <input type="text" id="organization" placeholder="Your Organization">
+                    </div>
+                    <button type="submit" class="form-submit">Join Waitlist</button>
+                </form>
+                <div id="successMessage" class="success-message">
+                    Thank you for joining our waitlist! We'll be in touch soon with information.
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <section class="principles-section">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">96<span class="highlight">%</span></div>
-                    <div class="stat-label">Prediction Accuracy</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">4.8<span class="highlight">M</span></div>
-                    <div class="stat-label">Daily Data Points</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">72<span class="highlight">h</span></div>
-                    <div class="stat-label">Advance Warning</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">100<span class="highlight">%</span></div>
-                    <div class="stat-label">American Built</div>
-                </div>
+            <div class="principles-content">
+                <h2>Founded on <span class="highlight">Timeless Principles</span></h2>
+                <p class="subtitle">Like our namesake authors of The Federalist Papers, we believe in the power of persuasion and the vital role of an informed public in maintaining a constitutional republic.</p>
+                
+                <blockquote class="principles-quote">
+                    "If men were angels, no government would be necessary... In framing a government which is to be administered by men over men, the great difficulty lies in this: you must first enable the government to control the governed; and in the next place oblige it to control itself."
+                    <cite>— James Madison, Federalist No. 51</cite>
+                </blockquote>
+                
+                <p>In the spirit of the original Publius authors, we provide the intelligence tools needed to advance American principles in the modern political landscape.</p>
             </div>
         </div>
     </section>
-    
+
     <section class="platform-section">
         <div class="container">
             <div class="platform-grid">
                 <div class="platform-content">
                     <h2>Command Center for <span class="highlight">Political Actors</span></h2>
-                    <p>Vox Publius provides a comprehensive intelligence platform designed for leaders who understand that information advantage is the foundation of effective governance.</p>
-                    <p>Our system converts vast quantities of political data into actionable insights, enabling strategic decision-making with unprecedented clarity and foresight.</p>
+                    <p>Our mission is to leverage cutting-edge artificial intelligence and data analytics to help the America-First ecosystem win elections and dominate the public narrative.</p>
+                    <p>Our platform is designed for leaders who understand that information advantage is paramount to success in the political arena.</p>
                     <div class="action-buttons">
-                        <a href="#" class="primary-button">See The Platform</a>
+                        <a href="#" class="primary-button" id="platformWaitlistBtn">Join the Waitlist</a>
                     </div>
                 </div>
-                <div class="platform-image"></div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="features-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Superior <span class="highlight">Intelligence</span> Capabilities</h2>
-                <p>Our platform delivers comprehensive visibility into the political landscape, providing you with the intelligence advantage necessary for success.</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
-                    <h3 class="feature-title">Sentiment Analysis</h3>
-                    <p class="feature-description">Real-time constituent sentiment tracking across voting districts with precision demographic targeting.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
-                    <h3 class="feature-title">Policy Impact Forecasting</h3>
-                    <p class="feature-description">Proprietary algorithms predict electoral and economic outcomes of policy proposals before implementation.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
-                    <h3 class="feature-title">Opposition Intelligence</h3>
-                    <p class="feature-description">Comprehensive assessment of opponent vulnerabilities, funding sources, and narrative weaknesses.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
-                    <h3 class="feature-title">Media Narrative Tracking</h3>
-                    <p class="feature-description">Monitor narrative evolution across traditional and social media with early warning indicators.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
-                    <h3 class="feature-title">Fundraising Analytics</h3>
-                    <p class="feature-description">Identify high-potential donors, optimize messaging, and increase conversion rates through data-driven targeting.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
-                    <h3 class="feature-title">Legislative Opportunity Mapping</h3>
-                    <p class="feature-description">Discover strategic openings for legislative action through comprehensive political landscape analysis.</p>
+                <div class="platform-image">
+                    <img src="images/Snap_the_Whip_1872_Winslow_Homer.jpg" alt="Platform Image" style="width: 100%; height: 100%; object-fit: cover; object-position: center; ">
                 </div>
             </div>
         </div>
     </section>
-    
-    <section class="testimonials-section">
+   
+    <section class="platform-section" style="background-color: var(--light-gray);">
         <div class="container">
-            <div class="section-header">
-                <h2>Trusted by <span class="highlight">Leaders</span></h2>
-                <p>Join the vanguard of America's political renewal.</p>
-            </div>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"Vox Publius provides the intelligence advantage necessary for navigating today's complex political environment. It's become an indispensable part of our strategic operations."</p>
-                    <div class="testimonial-author">James Mitchell</div>
-                    <div class="testimonial-role">Former Chief of Staff, U.S. Senate</div>
+            <div class="platform-grid">
+                <div class="platform-image">
+                    <img src="images/service-pnp-fsa-8a33000-8a33000-8a33044v.jpg" alt="Platform Image" style="width: 100%; height: 100%; object-fit: cover; object-position: center; ">
                 </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"The predictive capabilities of this platform are unlike anything I've seen. We identified critical constituent concerns months before our opponents even recognized the issue."</p>
-                    <div class="testimonial-author">Alexandra Reynolds</div>
-                    <div class="testimonial-role">Campaign Director</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Join the Architects of America's Future</h2>
-                <p class="subtitle">Gain the intelligence advantage necessary for effective political leadership in today's complex environment.</p>
-                <div class="cta-buttons">
-                    <a href="#" class="white-button">Request Platform Access</a>
+                <div class="platform-content">
+                    <h2>Superior <span class="highlight">Intelligence</span> Capabilities</h2>
+                    <p>Our platform delivers comprehensive visibility into the political news landscape, providing you with the intelligence advantage necessary for success.</p>
+
+                    <h3>News Intelligence</h3>
+                    <p>Our AI analyzes thousands of news sources daily, categorizing content by political valence and identifying emerging narratives.</p>
+
+                    <h3>Comms Opportunity Finder</h3>
+                    <p>Automatically identify high-impact communication opportunities with our proprietary algorithm.</p>
+
+                    <h3>Opposition Monitoring</h3>
+                    <p>Track opponents' media mentions, funding activities, and narrative evolution in real-time.</p>
+
+                    <h3>Outreach Intelligence</h3>
+                    <p>Curated journalist database of political leanings and AI-assisted pitch templates optimized for each contact.</p>
                 </div>
             </div>
         </div>
@@ -578,37 +832,171 @@
                     <p class="footer-description">Political intelligence for the architects of America's future.</p>
                 </div>
                 <div>
-                    <h4 class="footer-heading">Platform</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Security</a></li>
-                        <li><a href="#">Integration</a></li>
-                        <li><a href="#">API</a></li>
-                    </ul>
+                    
                 </div>
                 <div>
-                    <h4 class="footer-heading">Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Team</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Press</a></li>
-                    </ul>
+                    
                 </div>
                 <div>
-                    <h4 class="footer-heading">Resources</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Case Studies</a></li>
-                        <li><a href="#">White Papers</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
+                    
                 </div>
+                
             </div>
             <div class="footer-bottom">
                 <p>© 2025 Vox Publius. All rights reserved. Proudly built in the United States of America.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Google Form Integration Script -->
+    <script>
+        // Modal functionality
+        const modal = document.getElementById("waitlistModal");
+        const closeBtn = document.getElementById("closeModal");
+        
+        // All buttons that should open the modal
+        const waitlistBtns = [
+            document.getElementById("headerWaitlistBtn"),
+            document.getElementById("heroWaitlistBtn"),
+            document.getElementById("platformWaitlistBtn"),
+            document.getElementById("ctaWaitlistBtn")
+        ];
+        
+        // Open modal when any waitlist button is clicked
+        waitlistBtns.forEach(btn => {
+            if (btn) {
+                btn.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    modal.style.display = "block";
+                });
+            }
+        });
+        
+        // Close modal when X is clicked
+        closeBtn.addEventListener("click", function() {
+            modal.style.display = "none";
+            // Reset form and hide success message if visible
+            document.getElementById("waitlistForm").reset();
+            document.getElementById("successMessage").style.display = "none";
+            document.getElementById("waitlistForm").style.display = "block";
+        });
+        
+        // Close modal when clicking outside of it
+        window.addEventListener("click", function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                // Reset form and hide success message if visible
+                document.getElementById("waitlistForm").reset();
+                document.getElementById("successMessage").style.display = "none";
+                document.getElementById("waitlistForm").style.display = "block";
+            }
+        });
+        
+        // Form submission
+        document.getElementById("waitlistForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const email = document.getElementById("email").value;
+            const name = document.getElementById("name").value;
+            const organization = document.getElementById("organization").value;
+            
+            // Google Form field entry IDs (you need to inspect your Google Form to get these)
+            // These are educated guesses - you may need to adjust them based on your actual form
+            const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSeyfjQ6LWmnJB2Z5qj5hRLbfkJ7ReEw8gUUaYy_AKHr4-MyGg/formResponse';
+            const emailFieldName = 'entry.502349335'; // Replace with actual entry ID for email
+            const nameFieldName = 'entry.1699573658';  // Replace with actual entry ID for name
+            const orgFieldName = 'entry.116237436';   // Replace with actual entry ID for organization
+            
+            // Create form data object
+            const formData = new FormData();
+            formData.append(emailFieldName, email);
+            formData.append(nameFieldName, name);
+            formData.append(orgFieldName, organization);
+            
+            // Create a hidden iframe to submit the form
+            const iframe = document.createElement('iframe');
+            iframe.name = 'hidden_iframe';
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+            
+            // Create a form element
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = formUrl;
+            form.target = 'hidden_iframe';
+            
+            // Add form fields
+            const emailInput = document.createElement('input');
+            emailInput.type = 'text';
+            emailInput.name = emailFieldName;
+            emailInput.value = email;
+            form.appendChild(emailInput);
+            
+            const nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.name = nameFieldName;
+            nameInput.value = name;
+            form.appendChild(nameInput);
+            
+            const orgInput = document.createElement('input');
+            orgInput.type = 'text';
+            orgInput.name = orgFieldName;
+            orgInput.value = organization;
+            form.appendChild(orgInput);
+            
+            // Append the form to the body and submit it
+            document.body.appendChild(form);
+            form.submit();
+            
+            // Show success message and hide form
+            document.getElementById("waitlistForm").style.display = "none";
+            document.getElementById("successMessage").style.display = "block";
+            
+            // Remove the form and iframe after submission to clean up
+            setTimeout(() => {
+                document.body.removeChild(form);
+                document.body.removeChild(iframe);
+            }, 1000);
+        });
+        
+        // Alternative approach using fetch API (as backup in case iframe method has issues)
+        // Note: This might not work directly due to CORS restrictions but is included as reference
+        function submitFormUsingFetch() {
+            const email = document.getElementById("email").value;
+            const name = document.getElementById("name").value;
+            const organization = document.getElementById("organization").value;
+            
+            // Replace these with your actual Google Form field IDs
+            // You need to inspect your Google Form to get the correct entry IDs
+            const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSeyfjQ6LWmnJB2Z5qj5hRLbfkJ7ReEw8gUUaYy_AKHr4-MyGg/formResponse';
+            
+            // You'll need to find these entry IDs in your Google Form
+            const data = new URLSearchParams();
+            data.append('entry.123456789', email); // Replace with actual email field ID
+            data.append('entry.987654321', name);  // Replace with actual name field ID
+            data.append('entry.456789123', organization); // Replace with actual organization field ID
+            
+            fetch(formUrl, {
+                method: 'POST',
+                mode: 'no-cors', // Important! This prevents CORS errors but also means you can't check response status
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: data
+            })
+            .then(response => {
+                // Note: due to 'no-cors' mode, we can't access response details
+                // So we just assume it worked
+                document.getElementById("waitlistForm").style.display = "none";
+                document.getElementById("successMessage").style.display = "block";
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // You might want to show an error message here
+            });
+        }
+
+    </script>
 </body>
 </html>
